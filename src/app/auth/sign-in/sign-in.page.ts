@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+//import { AngularFireAuth } from '@angular/fire/auth';
+//import { User } from 'firebase'; 
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -14,15 +17,24 @@ export class SignInPage implements OnInit {
     'password': new FormControl('', Validators.required)
   });
 
-  constructor( private router: Router ) {
+  constructor(private router: Router, public authService : AuthService ) {
   }
 
   ngOnInit() {
   }
 
-  signinForm() {
+ signinForm() {
     console.log(this.login);
-    this.router.navigateByUrl('home');
+
+    let email = this.login.value.email;
+    let password = this.login.value.password;
+    //this.afAuth.auth.signInWithEmailAndPassword(email, password);
+    this.authService.login(email, password).then(res => {
+      console.log(res)
+      this.router.navigateByUrl('home');
+    }, (error) => {
+        console.log(error)
+    })
   }
 
 }

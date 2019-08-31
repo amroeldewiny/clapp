@@ -26,11 +26,7 @@ export class SignInPage implements OnInit {
 
     let email = this.login.value.email;
     let password = this.login.value.password;
-   this.authService.login(email, password).then(res => {
-     console.log(res);
-    }, (error) => {
-        console.log(error)
-    })
+   this.authService.login(email, password);
   }
 
 }

@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>maps</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div #map id="map" [hidden]="!uid"></div>
+  <ion-button shape="full" size="large" (click)="getCurrentPosition()" color="tertiary">
+    Geyt Current Position
+  </ion-button>
+
+  <ion-button shape="full" size="large" (click)="watchPosition()" color="tertiary">
+    Watch Position
+  </ion-button>
+
+</ion-content>

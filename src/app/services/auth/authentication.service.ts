@@ -13,7 +13,7 @@ export class AuthenticationService {
 
   user: User;
 
-  authState = new BehaviorSubject(false);
+  authState = new BehaviorSubject<boolean>(false);
 
   constructor(
     private router: Router,
@@ -23,12 +23,14 @@ export class AuthenticationService {
   ) {
     // add and remove user from localStorage
     this.afAuth.authState.subscribe(user => {
+      console.log(user + ' From Authentication service')
       if (user) {
         this.user = user;
         localStorage.setItem('user', JSON.stringify(this.user));
         this.authState.next(true);
       } else {
         localStorage.setItem('user', null);
+        this.authState.next(false);
       }
     })
   } // End constrmctor
@@ -38,7 +40,7 @@ export class AuthenticationService {
         try {
           await this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(() => {
             this.authState.next(true);
-            this.router.navigateByUrl('home');
+            this.router.navigate(['home']);
             })
         } catch (error) {
             alert('Error! ' + error.massage);
@@ -50,7 +52,7 @@ export class AuthenticationService {
         try {
           await this.afAuth.auth.signInWithEmailAndPassword(email, password).then(() => {
             this.authState.next(true);
-            this.router.navigateByUrl('home');
+            this.router.navigate(['home']);
             })
         } catch (error) {
             alert('Error! ' + error.massage);
@@ -62,7 +64,7 @@ export class AuthenticationService {
       await this.afAuth.auth.signOut();
       localStorage.removeItem('user');
       this.authState.next(false);
-      this.router.navigateByUrl('sign-in');
+      this.router.navigate(['sign-in']);
     } catch (error) {
       alert('Error! ' + error.massage);
     }

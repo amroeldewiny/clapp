@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyBRryk2DhIcG65rOAfwKnxRh4a3w5O1zGM",
+    apiKey: "AIzaSyCPfS_caM0kwfnat4ZZS161Z1yBavjDCGQ",
     authDomain: "clapp-dafb5.firebaseapp.com",
     databaseURL: "https://clapp-dafb5.firebaseio.com",
     projectId: "clapp-dafb5",

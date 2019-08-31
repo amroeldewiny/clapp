@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'forgot-password', loadChildren: './auth/forgot-password/forgot-password.module#ForgotPasswordPageModule' },
   { path: 'verify-email', loadChildren: './auth/verify-email/verify-email.module#VerifyEmailPageModule' },
   { path: 'home', loadChildren: './dashboard/home/home.module#HomePageModule', canActivate: [AuthGuardService] },
+  { path: 'maps', loadChildren: './dashboard/maps/maps.module#MapsPageModule' },
 ];
 
 @NgModule({

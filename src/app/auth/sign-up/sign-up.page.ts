@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth/auth.service';
+import { AuthenticationService } from '../../services/auth/authentication.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -15,7 +15,7 @@ export class SignUpPage implements OnInit {
     'password': new FormControl('', Validators.required)
   });
 
-  constructor(private router: Router, public authService: AuthService ) { }
+  constructor(private router: Router, public authService: AuthenticationService ) { }
 
   ngOnInit() {
   }
@@ -25,11 +25,7 @@ export class SignUpPage implements OnInit {
 
     let email = this.signup.value.email;
     let password = this.signup.value.password;
-    this.authService.register(email, password).then(res => {
-      this.router.navigateByUrl('home');
-    }, (error) => {
-      console.log(error)
-    })
+    this.authService.register(email, password);
   }
 
 }

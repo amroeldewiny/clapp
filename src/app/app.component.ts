@@ -30,9 +30,13 @@ export class AppComponent {
 
       this.auth.authState.subscribe(state => {
         if (state) {
-          this.router.navigateByUrl('home');
+          console.log(state, ' From home auth true');
+          //this.router.navigateByUrl('home');
+          this.router.navigate(['home']);
         } else {
-          this.router.navigateByUrl('sign-in');
+          //this.router.navigateByUrl('sign-in');
+          this.router.navigate(['sign-in']);
+          console.log(state, ' From sign-in auth false');
         }
       })
     });
